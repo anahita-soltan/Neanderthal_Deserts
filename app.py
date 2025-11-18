@@ -49,7 +49,7 @@ min_len = st.sidebar.slider(
 )
 
 nss_per_100kb = st.sidebar.slider(
-    "Required NSS per 100 kb (min = 1)",
+    "Required NSS per 100 kb (min = 1 per desert)",
     min_value=0.1,
     max_value=5.0,
     value=1.0,
