@@ -153,6 +153,7 @@ st.markdown(
 st.subheader("Bar plot: desert coverage per chromosome")
 
 #cmap = cm.get_cmap("orange")  # "plasma", "magma", "turbo"
+orange = "#F39C12"   # or "#E67E22", "#D35400"
 
 fig1, ax1 = plt.subplots(figsize=(10,4))
 colors = cmap(np.linspace(0, 1, len(out_df)))
