@@ -147,10 +147,15 @@ st.markdown(
 )
 
 # PLOTS
+
+## Bar plot
 st.subheader("Bar plot: desert coverage per chromosome")
 
+cmap = cm.get_cmap("viridis")  # "plasma", "magma", "turbo", "cubehelix" also good
+
 fig1, ax1 = plt.subplots(figsize=(10,4))
-ax1.bar(out_df["CHROM"], out_df["Percent"])
+colors = cmap(np.linspace(0, 1, len(out_df)))
+ax1.bar(out_df["CHROM"], out_df["Percent"], color=colors)
 ax1.set_ylabel("% desert")
 ax1.set_xlabel("Chromosome")
 ax1.set_title("Desert coverage per chromosome")
@@ -158,14 +163,16 @@ plt.xticks(rotation=90)
 st.pyplot(fig1)
 
 
-st.subheader("Histogram: length distribution of filtered deserts")
+## Histogram
+c = cm.get_cmap("plasma")(0.6)
 
 fig2, ax2 = plt.subplots(figsize=(10,4))
-ax2.hist(all_desert_lengths, bins=30, color="steelblue", alpha=0.8)
+ax2.hist(all_desert_lengths, bins=30, color=c, alpha=0.85)
 ax2.set_xlabel("Length (bp)")
 ax2.set_ylabel("Count")
 ax2.set_title("Distribution of desert lengths (filtered)")
 plt.ticklabel_format(style="plain", axis="x")
+
 st.pyplot(fig2)
 
 
