@@ -180,6 +180,38 @@ plt.ticklabel_format(style="plain", axis="x")
 st.pyplot(fig2)
 
 
+st.subheader("Histogram: length distribution of filtered deserts")
+
+fig2, ax2 = plt.subplots(figsize=(10,4))
+
+# compute histogram manually
+counts, bins = np.histogram(all_desert_lengths, bins=30)
+
+# normalize counts → map to [0,1]
+norm = counts / counts.max()
+
+# choose a colormap (orange → dark orange)
+cmap = cm.get_cmap("YlOrBr")  # "Yellow-Orange-Brown" gradient
+
+# for each bin, draw a rectangle with a color based on its height
+for i in range(len(counts)):
+    ax2.bar(
+        bins[i],
+        counts[i],
+        width=bins[i+1] - bins[i],
+        align="edge",
+        color=cmap(norm[i]),
+        edgecolor="black",
+        linewidth=0.3
+    )
+
+ax2.set_xlabel("Length (bp)")
+ax2.set_ylabel("Count")
+ax2.set_title("Distribution of desert lengths (filtered)")
+plt.ticklabel_format(style="plain", axis="x")
+
+st.pyplot(fig2)
+
 # Table
 st.subheader("Desert coverage per chromosome")
 st.dataframe(out_df.style.format({"Percent": "{:.2f}"}))
