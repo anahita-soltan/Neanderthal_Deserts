@@ -152,7 +152,7 @@ st.markdown(
 ## Bar plot
 st.subheader("Bar plot: desert coverage per chromosome")
 
-orange = "#F39C12"   # clean amber-orange
+orange = "#FF7F50"   # clean amber-orange
 
 fig1, ax1 = plt.subplots(figsize=(10,4))
 ax1.bar(out_df["CHROM"], out_df["Percent"], color=orange)
@@ -166,43 +166,27 @@ st.pyplot(fig1)
 
 
 ## Histogram
-st.subheader("Histogram: desert length distribution")
-
-c = cm.get_cmap("turbo")(0.6)
-
-fig2, ax2 = plt.subplots(figsize=(10,4))
-ax2.hist(all_desert_lengths, bins=30, color=c, alpha=0.85)
-ax2.set_xlabel("Length (bp)")
-ax2.set_ylabel("Count")
-ax2.set_title("Distribution of desert lengths (filtered)")
-plt.ticklabel_format(style="plain", axis="x")
-
-st.pyplot(fig2)
-
-
 st.subheader("Histogram: length distribution of filtered deserts")
 
 fig2, ax2 = plt.subplots(figsize=(10,4))
 
-# compute histogram manually
 counts, bins = np.histogram(all_desert_lengths, bins=30)
+counts = counts.astype(float)
 
-# normalize counts → map to [0,1]
+# normalize: 0 -> min count, 1 -> max count
 norm = counts / counts.max()
+cmap = cm.get_cmap("Oranges")   # light to dark orange
 
-# choose a colormap (orange → dark orange)
-cmap = cm.get_cmap("YlOrBr")  # "Yellow-Orange-Brown" gradient
-
-# for each bin, draw a rectangle with a color based on its height
 for i in range(len(counts)):
+    color = cmap(norm[i])       # bigger count -> higher norm -> darker color
     ax2.bar(
         bins[i],
         counts[i],
         width=bins[i+1] - bins[i],
         align="edge",
-        color=cmap(norm[i]),
+        color=color,
         edgecolor="black",
-        linewidth=0.3
+        linewidth=0.3,
     )
 
 ax2.set_xlabel("Length (bp)")
