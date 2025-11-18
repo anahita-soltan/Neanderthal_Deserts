@@ -174,7 +174,7 @@ counts, bins = np.histogram(all_desert_lengths, bins=30)
 counts = counts.astype(float)
 
 # normalize: 0 -> min count, 1 -> max count
-norm = 1 - counts / counts.max()   # small -> light, big -> dark with YlOrBr
+norm = counts / counts.max()   # small -> light, big -> dark with YlOrBr
 cmap = cm.get_cmap("plasma")   # light to dark orange
 
 for i in range(len(counts)):
