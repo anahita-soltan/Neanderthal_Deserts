@@ -152,7 +152,7 @@ st.markdown(
 ## Bar plot
 st.subheader("Bar plot: desert coverage per chromosome")
 
-cmap = cm.get_cmap("cubehelix")  # "plasma", "magma", "turbo", "cubehelix" also good
+cmap = cm.get_cmap("orange")  # "plasma", "magma", "turbo"
 
 fig1, ax1 = plt.subplots(figsize=(10,4))
 colors = cmap(np.linspace(0, 1, len(out_df)))
@@ -166,7 +166,8 @@ st.pyplot(fig1)
 
 ## Histogram
 st.subheader("Histogram: desert length distribution")
-c = cm.get_cmap("plasma")(0.6)
+
+c = cm.get_cmap("turbo")(0.6)
 
 fig2, ax2 = plt.subplots(figsize=(10,4))
 ax2.hist(all_desert_lengths, bins=30, color=c, alpha=0.85)
