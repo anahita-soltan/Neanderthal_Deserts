@@ -152,7 +152,7 @@ st.markdown(
 ## Bar plot
 st.subheader("Bar plot: desert coverage per chromosome")
 
-orange = "#FF7F50"   # clean amber-orange
+orange = "#FFA500"   # clean amber-orange
 
 fig1, ax1 = plt.subplots(figsize=(10,4))
 ax1.bar(out_df["CHROM"], out_df["Percent"], color=orange)
@@ -174,7 +174,7 @@ counts, bins = np.histogram(all_desert_lengths, bins=30)
 counts = counts.astype(float)
 
 # normalize: 0 -> min count, 1 -> max count
-norm = counts / counts.max()
+norm = 1 - counts / counts.max()   # small -> light, big -> dark with YlOrBr
 cmap = cm.get_cmap("Oranges")   # light to dark orange
 
 for i in range(len(counts)):
