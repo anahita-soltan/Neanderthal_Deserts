@@ -175,7 +175,7 @@ counts = counts.astype(float)
 
 # normalize: 0 -> min count, 1 -> max count
 norm = 1 - counts / counts.max()   # small -> light, big -> dark with YlOrBr
-cmap = cm.get_cmap("YlOrBr")   # light to dark orange
+cmap = cm.get_cmap("plasma")   # light to dark orange
 
 for i in range(len(counts)):
     color = cmap(norm[i])       # bigger count -> higher norm -> darker color
