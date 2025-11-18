@@ -72,13 +72,13 @@ with st.sidebar.expander("What do these filters mean?"):
 
     **Minimum available_bp**  
     Ensures at least this fraction of the region is *mappable*.  
-    Example: `0.8` → ≥80% of the bases are real sequence (not masked).
+    Example: `0.8` → ≥ 80% of the bases are real sequence (not masked).
 
     **Minimum segment length**  
-    Removes micro-fragments that aren't meaningful desert candidates.
+    Removes fragments smaller than selected length.
 
-    **NSS / 100kb**  
-    Filters deserts by Neanderthal-specific SNP content.  
+    **Bin with NSS / 100kb**  
+    Filters deserts by 10kb bins with Neanderthal-specific SNPs.  
     Higher threshold → stricter desert definition.
     """)
 
