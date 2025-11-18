@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+from PIL import Image
 
 # ------------------------------
 # LOAD DATA
@@ -135,7 +136,11 @@ else:
 # ------------------------------
 # DISPLAY
 # ------------------------------
-st.title("🧬 Neanderthal Desert Explorer")
+
+img = Image.open("neanderthal.webp")
+st.image(img, caption="Reconstructed Neanderthal", use_column_width=True)
+
+st.title("Neanderthal Desert Explorer")
 
 st.markdown(
     f"""
